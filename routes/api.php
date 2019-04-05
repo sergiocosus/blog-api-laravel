@@ -49,6 +49,7 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
             Route::get('', 'Post\CategoryController@getOne');
             Route::put('', 'Post\CategoryController@update');
             Route::delete('', 'Post\CategoryController@destroy');
+            Route::patch('', 'Post\CategoryController@restore');
         });
     });
 

@@ -18,6 +18,9 @@ class CategoryController extends Controller {
         $categories = Category::query()
             ->when($request->search, function ($query, $search) {
                 $query->search($search, null, true, true);
+            })
+            ->when($request->with_trashed, function ($query, $with_trashed) {
+                $query->withTrashed();
             })->get();
 
         return compact('categories');
@@ -69,5 +72,15 @@ class CategoryController extends Controller {
         $category->delete();
 
         return response()->noContent();
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($category_slug) {
+        $category = Category::whereSlug($category_slug)->withTrashed()->first();
+        $category->restore();
+
+        return compact('category');
     }
 }

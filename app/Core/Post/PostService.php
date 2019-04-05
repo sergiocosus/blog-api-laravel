@@ -27,9 +27,9 @@ class PostService {
                 ->setName($request->thumbnail['name'])
                 ->toMediaCollection('thumb');;
         }
+        $post->save();
 
         $post->categories()->sync($request->category_ids);
-        $post->save();
 
         return $post;
     }
