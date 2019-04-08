@@ -27,7 +27,7 @@ class MediaLibrary extends Eloquent implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
+        $this->addMediaConversion('media')
             ->withResponsiveImages();
     }
 }

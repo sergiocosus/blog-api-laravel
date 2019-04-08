@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Media;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateMediaRequest extends FormRequest
+class DeleteMediaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,17 +13,18 @@ class CreateMediaRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('delete-media');
     }
 
     /**
      * Get the validation rules that apply to the request.
+     *
+     * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-          'image' => 'required|image',
-          'name' => 'nullable|string|max:255'
+            //
         ];
     }
 }

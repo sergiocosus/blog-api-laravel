@@ -53,7 +53,7 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
         });
     });
 
-    Route::put('users', 'UserController@update');
+    Route::put('user/me', 'UserController@update');
 
     Route::group(['prefix' => 'media'], function () {
         Route::post('', 'MediaController@store');
@@ -77,4 +77,4 @@ Route::group(['prefix' => 'users'], function () {
 });
 
 // Media
-Route::get('media', 'MediaController@get');
+Route::get('media', 'MediaController@index');

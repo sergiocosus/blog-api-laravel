@@ -4,15 +4,18 @@ namespace App;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Passport\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, Notifiable;
     use LaratrustUserTrait;
+    use HasMediaTrait;
 
 
     /**
@@ -21,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -42,6 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'profile_srcset',
+    ];
 
     public function comments()
     {
@@ -84,4 +90,16 @@ class User extends Authenticatable
 
         return $this->permissions->merge($roles)->unique('name');
     }
+
+    public function registerMediaConversions(Media $media = null) {
+        $this->addMediaConversion('profile')
+            ->withResponsiveImages();
+    }
+
+
+    public function getProfileSrcsetAttribute() {
+        return optional($this->getMedia('profile')
+            ->last())->getSrcset('profile');
+    }
+
 }

@@ -33,8 +33,8 @@ class UserController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user) {
-        $this->authorize('update', $user);
+    public function update(UpdateUserRequest $request) {
+        $user = $request->user();
 
         if ($request->filled('password')) {
             $request->merge([
@@ -42,11 +42,22 @@ class UserController extends Controller {
             ]);
         }
 
-        $user->update(array_filter($request->only([
+        $user->update($request->only([
             'name',
+            'last_name',
             'email',
             'password',
-        ])));
+        ]));
+
+        logger($request->profile);
+        logger($request);
+
+        if ($request->profile) {
+            $user->addMediaFromBase64($request->profile['base64'])
+                ->preservingOriginal()
+                ->setName($request->profile['name'])
+                ->toMediaCollection('profile');;
+        }
 
         return compact('user');
     }
