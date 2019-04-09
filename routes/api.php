@@ -30,11 +30,10 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
         });
 
         Route::group(['prefix' => '{post}'], function () {
-            Route::get('', 'PostController@getOne');
             Route::put('', 'PostController@update');
             Route::delete('', 'PostController@destroy');
 
-            Route::post('commment', 'PostCommentController@store');
+            Route::post('comment', 'PostCommentController@store');
 
             Route::post('likes', 'PostLikeController@store');
             Route::delete('likes', 'PostLikeController@destroy');
@@ -62,6 +61,8 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
 });
 
 Route::group(['prefix' => 'post'], function () {
+    Route::get('{post}', 'PostController@getOne');
+
     Route::get('comments', 'PostCommentController@index');
     Route::get('', 'PostController@index');
     Route::get('{comment}', 'PostCommentController@show');

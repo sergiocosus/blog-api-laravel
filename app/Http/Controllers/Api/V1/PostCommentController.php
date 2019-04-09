@@ -28,11 +28,11 @@ class PostCommentController extends Controller {
         $comment = Auth::user()->comments()->create([
             'post_id' => $post->id,
             'content' => $request->input('content'),
-        ]);
+        ])->load('author');;
 
         broadcast(new CommentPosted($comment, $post))->toOthers();
 
-        return $comment;
+        return compact('comment');
     }
 
     /**

@@ -49,9 +49,6 @@ class UserController extends Controller {
             'password',
         ]));
 
-        logger($request->profile);
-        logger($request);
-
         if ($request->profile) {
             $user->addMediaFromBase64($request->profile['base64'])
                 ->preservingOriginal()

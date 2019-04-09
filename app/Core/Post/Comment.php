@@ -60,7 +60,6 @@ class Comment extends Eloquent
 		return $this->belongsTo(\App\Core\Post\Post::class);
 	}
 
-
     /**
      * Scope a query to only include comments posted last week.
      */

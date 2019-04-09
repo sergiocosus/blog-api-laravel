@@ -39,7 +39,7 @@ class PostController extends Controller {
     }
 
     public function getOne(Request $request, Post $post) {
-        $post->load('author', 'comments', 'categories');
+        $post->load('author', 'comments.author', 'categories');
         return compact('post');
     }
 
@@ -47,7 +47,8 @@ class PostController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(CreatePostRequest $request) {
-        $post = $this->postService->createPost($request);
+        $post = $this->postService->createPost($request)
+            ->load('author');
 
         return compact('post');
     }
