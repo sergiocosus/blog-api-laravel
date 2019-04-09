@@ -60,7 +60,11 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
     });
 });
 
-Route::get('auth/social', 'Auth\SocialAuthController@getSocial');
+Route::group(['prefix' => 'auth'] , function() {
+    Route::get('social', 'Auth\SocialAuthController@getSocial');
+    Route::post('register', 'Auth\RegisterController@register');
+});
+
 
 
 Route::group(['prefix' => 'post'], function () {
