@@ -60,6 +60,9 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
     });
 });
 
+Route::get('auth/social', 'Auth\SocialAuthController@getSocial');
+
+
 Route::group(['prefix' => 'post'], function () {
     Route::get('{post}', 'PostController@getOne');
 

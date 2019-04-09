@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Adaojunior\Passport\SocialUserResolverInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Providers\SocialUserResolver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(SocialUserResolverInterface::class, SocialUserResolver::class);
+
         if ($this->app->environment() == 'local') {
             $this->app->register(\Reliese\Coders\CodersServiceProvider::class);
         }
