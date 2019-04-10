@@ -47,7 +47,9 @@ class Comment extends Eloquent
 		'author_user_id',
 		'post_id',
 		'content',
-		'posted_at'
+		'posted_at',
+		'ip_address',
+		'user_agent'
 	];
 
 	public function author()

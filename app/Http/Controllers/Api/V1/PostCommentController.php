@@ -28,6 +28,8 @@ class PostCommentController extends Controller {
         $comment = Auth::user()->comments()->create([
             'post_id' => $post->id,
             'content' => $request->input('content'),
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
         ])->load('author');;
 
         broadcast(new CommentPosted($comment, $post))->toOthers();

@@ -23,6 +23,10 @@ class CreateCommentsTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
 
             $table->text('content');
+
+            $table->ipAddress('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+
             $table->timestamp('posted_at');
             $table->timestamps();
             $table->softDeletes();
