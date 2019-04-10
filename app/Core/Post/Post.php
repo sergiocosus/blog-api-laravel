@@ -132,19 +132,19 @@ class Post extends Eloquent implements HasMedia {
     }
 
     public function registerMediaConversions(Media $media = null) {
-        $this->addMediaConversion('thumb')
+        $this->addMediaConversion('main')
             ->withResponsiveImages();
     }
 
     public function getImageSrcsetAttribute() {
-        return optional($this->getMedia('thumb')
-            ->last())->getSrcset('thumb');
+        return optional($this->getMedia('main')
+            ->last())->getSrcset('main');
 
     }
 
     public function getImageUrlAttribute() {
-        return optional($this->getMedia('thumb')
-            ->last())->getFullUrl('thumb');
+        return optional($this->getMedia('main')
+            ->last())->getFullUrl('main');
 
     }
 

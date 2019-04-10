@@ -25,7 +25,7 @@ class PostService {
             $post->addMediaFromBase64($request->thumbnail['base64'])
                 ->preservingOriginal()
                 ->setName($request->thumbnail['name'])
-                ->toMediaCollection('thumb');;
+                ->toMediaCollection('main');;
         }
         $post->save();
 
