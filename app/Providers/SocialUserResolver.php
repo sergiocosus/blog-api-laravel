@@ -48,14 +48,7 @@ class SocialUserResolver implements SocialUserResolverInterface {
         $redirect_url = $this->request->get('redirect_url');
         $this->request->merge(['code' => $accessToken]);
 
-        if ($network == 'coinbase') {
-            $coinbaseTokenResponse = $this->getCoinbaseTokenResponse($accessToken);
-            $social_user           = $this->getCoinbaseUserData($coinbaseTokenResponse['access_token']);
-        } else {
-            $social_user = $this->getSocialUserData($network, $redirect_url);
-        }
-
-        logger($social_user);
+        $social_user = $this->getSocialUserData($network, $redirect_url);
 
         switch ($network) {
             case 'facebook':
@@ -67,6 +60,7 @@ class SocialUserResolver implements SocialUserResolverInterface {
                         'email'    => $social_user['email'],
                         'name'     => $social_user['first_name'],
                         'last_name' => $social_user['last_name'],
+                        'picture_url' => $social_user['picture_url'],
                     ]);
 
                     $user = User::whereEmail($social_user['email'])->first();
@@ -88,7 +82,6 @@ class SocialUserResolver implements SocialUserResolverInterface {
 
         if ($redirectUrl) {
             $socialite->redirectUrl($redirectUrl);
-            logger($redirectUrl);
         }
 
         if ($driver === 'facebook') {
@@ -116,11 +109,12 @@ class SocialUserResolver implements SocialUserResolverInterface {
             case 'facebook':
                 $social_user['first_name'] = $userSocial->user['first_name'];
                 $social_user['last_name']  = $userSocial->user['last_name'];
+                $social_user['picture_url']  = $userSocial->avatar_original;
                 break;
             case 'google':
-                logger((array)$userSocial);
                 $social_user['first_name'] = $userSocial->user['given_name'];
                 $social_user['last_name']  = $userSocial->user['family_name'];
+                $social_user['picture_url']  = $userSocial->avatar_original;
                 break;
         }
 

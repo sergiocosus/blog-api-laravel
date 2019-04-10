@@ -19,10 +19,31 @@ class UserService {
     }
 
     public function createForSocial($data) {
-        return User::create([
-            'name' => $data['name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-        ]);
+        return \DB::transaction(function () use ($data) {
+            $user = User::create([
+                'name' => $data['name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+            ]);
+            logger('created!');
+
+            $this->addProfilePictureFromUrl($user, $data);
+
+            return $user;
+        });
+
+    }
+
+    public function addProfilePictureFromUrl(User $user, $data) {
+
+        logger($data);
+        logger('sdf');
+        if (isset($data['picture_url'])) {
+            logger($data['picture_url']);
+
+            $user->addMediaFromUrl($data['picture_url'])
+                ->preservingOriginal()
+                ->toMediaCollection('profile');;
+        }
     }
 }

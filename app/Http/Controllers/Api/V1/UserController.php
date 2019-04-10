@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Core\UserService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\User;
@@ -10,6 +11,17 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
+
+    /**
+     * @var UserService
+     */
+    private $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
+
+
     /**
      * Return the users.
      */
