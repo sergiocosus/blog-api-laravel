@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user/me', function (Request $request) {
 Route::middleware(['auth:api', 'verified'])->group(function () {
     Route::group(['prefix' => 'auth'] , function() {
         Route::get('logout', 'Auth\LogoutController@logout');
+        Route::put('password', 'Auth\PasswordController@update');
     });
 
     Route::group(['prefix' => 'post'], function () {
