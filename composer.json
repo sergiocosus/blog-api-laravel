@@ -19,7 +19,8 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "nicolaslopezj/searchable": "^1.10",
         "santigarcor/laratrust": "5.2.*",
-        "spatie/laravel-medialibrary": "^7.0.0"
+        "spatie/laravel-medialibrary": "^7.0.0",
+        "yadahan/laravel-authentication-log": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-cors": "^0.11.3",

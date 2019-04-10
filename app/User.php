@@ -10,10 +10,11 @@ use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Yadahan\AuthenticationLog\AuthenticationLogable;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, AuthenticationLogable;
     use LaratrustUserTrait;
     use HasMediaTrait;
 

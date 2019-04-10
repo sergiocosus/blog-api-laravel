@@ -21,6 +21,10 @@ Route::middleware('auth:api')->get('/user/me', function (Request $request) {
 
 
 Route::middleware(['auth:api', 'verified'])->group(function () {
+    Route::group(['prefix' => 'auth'] , function() {
+        Route::get('logout', 'Auth\LogoutController@logout');
+    });
+
     Route::group(['prefix' => 'post'], function () {
         Route::get('', 'PostController@index');
         Route::post('', 'PostController@store');

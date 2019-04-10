@@ -55,6 +55,7 @@ class SocialUserResolver implements SocialUserResolverInterface {
             $social_user = $this->getSocialUserData($network, $redirect_url);
         }
 
+        logger($social_user);
 
         switch ($network) {
             case 'facebook':
