@@ -5,6 +5,7 @@ namespace App\Providers;
 use Adaojunior\Passport\SocialUserResolverInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Providers\SocialUserResolver;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
     }
 }
