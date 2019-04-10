@@ -39,7 +39,15 @@ class PostController extends Controller {
     }
 
     public function getOne(Request $request, Post $post) {
-        $post->load('author', 'comments.author', 'categories');
+        $post->load([
+            'author',
+            'comments' => function ($query) {
+                $query->with('author')
+                    ->orderBy('created_at', 'desc');
+            },
+            'categories'
+        ]);
+
         return compact('post');
     }
 
@@ -59,13 +67,6 @@ class PostController extends Controller {
     public function update(UpdatePostRequest $request, Post $post) {
         $this->postService->updatePost($post, $request);
 
-        return compact('post');
-    }
-
-    /**
-     * Return the specified resource.
-     */
-    public function show(Post $post) {
         return compact('post');
     }
 

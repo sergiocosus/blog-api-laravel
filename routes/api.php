@@ -50,7 +50,6 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
         Route::post('', 'Post\CategoryController@store');
 
         Route::group(['prefix' => '{category}'], function () {
-            Route::get('', 'Post\CategoryController@getOne');
             Route::put('', 'Post\CategoryController@update');
             Route::delete('', 'Post\CategoryController@destroy');
             Route::patch('', 'Post\CategoryController@restore');
@@ -70,8 +69,6 @@ Route::group(['prefix' => 'auth'] , function() {
     Route::post('register', 'Auth\RegisterController@register');
 });
 
-
-
 Route::group(['prefix' => 'post'], function () {
     Route::get('{post}', 'PostController@getOne');
 
@@ -82,6 +79,11 @@ Route::group(['prefix' => 'post'], function () {
 
 Route::group(['prefix' => 'category'], function () {
     Route::get('', 'Post\CategoryController@index');
+
+
+    Route::group(['prefix' => '{category}'], function () {
+        Route::get('', 'Post\CategoryController@getOne');
+    });
 });
 Route::group(['prefix' => 'users'], function () {
     Route::apiResource('comments', 'UserCommentController')->only('index');
