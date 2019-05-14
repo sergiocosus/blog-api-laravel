@@ -27,7 +27,9 @@ class CategoryController extends Controller {
     }
 
     public function getOne(Request $request, Category $category) {
-        $category->load('posts');
+        $category->load(['posts' => function($query) {
+            $query->whereIsPublished(true);
+        }]);
 
         return compact('category');
     }

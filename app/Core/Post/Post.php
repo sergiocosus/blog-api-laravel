@@ -47,6 +47,7 @@ class Post extends Eloquent implements HasMedia {
 
     protected $casts = [
         'author_user_id' => 'int',
+        'is_published'   => 'bool',
     ];
 
     protected $dates = [
@@ -59,6 +60,7 @@ class Post extends Eloquent implements HasMedia {
         'slug',
         'content',
         'posted_at',
+        'is_published',
     ];
 
     protected $appends = [

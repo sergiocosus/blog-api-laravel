@@ -3,7 +3,7 @@
 return [
     'role_structure' => [
         'superadministrator' => [
-            'post' => 'c,r,u,d',
+            'post' => 'c,r,u,d,',
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
         ],
@@ -13,7 +13,7 @@ return [
             'media' => 'c,r,u,d',
         ],
         'user' => [
-            'post' => 'r,u',
+            'post' => 'u',
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
         ],

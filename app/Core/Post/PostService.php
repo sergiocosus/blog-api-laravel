@@ -17,6 +17,7 @@ class PostService {
         $post->fill($request->only([
             'title',
             'content',
+            'is_published',
             'posted_at',
             'thumbnail_id',
         ]));

@@ -7,6 +7,7 @@ use App\Core\Post\PostService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreatePostRequest;
 use App\Http\Requests\Post\DeletePostRequest;
+use App\Http\Requests\Post\GetPostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -27,25 +28,31 @@ class PostController extends Controller {
      */
     public function index(Request $request) {
         $paginated_posts = Post::query()
-            ->when($request->search, function($query, $search) {
+            ->when($request->search, function ($query, $search) {
                 $query->search($search);
             })
+            ->when($request->get('is_published', 'true') === 'true',
+                function ($query) {
+                    $query->whereIsPublished(true);
+                }, function ($query) use ($request) {
+                    throw_unless($request->user()->can('read-post'), \Exception::class);
+                })
             ->withCount('comments')
             ->with('categories')
             ->latest()
-            ->paginate($request->get('limit', 20));
+            ->paginate($request->get('per_page', 20));
 
         return compact('paginated_posts');
     }
 
-    public function getOne(Request $request, Post $post) {
+    public function getOne(GetPostRequest $request, Post $post) {
         $post->load([
             'author',
             'comments' => function ($query) {
                 $query->with('author')
                     ->orderBy('created_at', 'desc');
             },
-            'categories'
+            'categories',
         ]);
 
         return compact('post');
