@@ -62,7 +62,11 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('', 'MediaController@store');
         Route::delete('{media_id}', 'MediaController@destroy');
     });
+
+    Route::put('setting', 'PageSettingsController@update');
 });
+
+Route::get('setting', 'PageSettingsController@get');
 
 Route::group(['prefix' => 'auth'] , function() {
     Route::get('social', 'Auth\SocialAuthController@getSocial');

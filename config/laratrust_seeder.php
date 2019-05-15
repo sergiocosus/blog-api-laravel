@@ -6,16 +6,18 @@ return [
             'post' => 'c,r,u,d,',
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
+            'setting' => 'u',
         ],
         'administrator' => [
             'post' => 'c,r,u,d',
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
+            'setting' => 'u',
         ],
         'user' => [
-            'post' => 'u',
-            'category' => 'c,r,u,d',
-            'media' => 'c,r,u,d',
+            'post' => '',
+            'category' => '',
+            'media' => '',
         ],
     ],
     'permission_structure' => [
