@@ -31,6 +31,10 @@ class PageSetting extends Eloquent
 	    [
             'name' => 'title',
             'type' => 'text',
+        ],
+	    [
+            'name' => 'showLinks',
+            'type' => 'boolean',
         ]
     ];
 }

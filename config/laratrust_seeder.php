@@ -7,12 +7,14 @@ return [
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
             'setting' => 'u',
+            'link' => 'c,r,u,d',
         ],
         'administrator' => [
             'post' => 'c,r,u,d',
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
             'setting' => 'u',
+            'link' => 'c,r,u,d',
         ],
         'user' => [
             'post' => '',

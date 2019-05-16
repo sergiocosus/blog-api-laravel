@@ -63,6 +63,17 @@ Route::middleware(['auth:api'])->group(function () {
         Route::delete('{media_id}', 'MediaController@destroy');
     });
 
+    Route::group(['prefix' => 'link'], function () {
+        Route::post('', 'LinkController@store');
+
+        Route::group(['prefix' => '{link}'], function () {
+            Route::get('', 'LinkController@getOne');
+            Route::put('', 'LinkController@update');
+            Route::delete('', 'LinkController@delete');
+            Route::patch('', 'LinkController@restore');
+        });
+    });
+
     Route::put('setting', 'PageSettingsController@update');
 });
 
@@ -94,6 +105,8 @@ Route::group(['prefix' => 'users'], function () {
     Route::apiResource('posts', 'UserPostController')->only('index');
     Route::apiResource('', 'UserController')->only(['index', 'show']);
 });
+
+Route::get('link', 'LinkController@get');
 
 // Media
 Route::get('media', 'MediaController@index');
