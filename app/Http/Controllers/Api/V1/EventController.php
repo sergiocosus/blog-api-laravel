@@ -31,6 +31,9 @@ class EventController extends Controller {
             ->when($request->not_expired, function ($query, $notExpired) {
                 $query->where('end_at', '>', now());
             })
+            ->when($request->with_trashed === 'true', function ($query) {
+                $query->withTrashed();
+            })
             ->get();
 
         return compact('events');
@@ -60,7 +63,7 @@ class EventController extends Controller {
     }
 
     public function restore(DeleteEventRequest $request, $event) {
-        $event = Event::withTrashed()->find($event);
+        $event = Event::withTrashed()->whereSlug($event)->first();
         $event->restore();
 
         return compact('event');
