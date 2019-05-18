@@ -17,16 +17,14 @@ class MediaController extends Controller {
     public function index(Request $request) {
         $paginated_media = MediaLibrary::first()
             ->media()
+            ->when($request->search, function ($query, $search) {
+                $query->search($search, null, true, true);
+            })
             ->paginate($request->get('limit', 20));
 
         $paginated_media->getCollection()
             ->transform(function ($media) {
-                return [
-                    'id' => $media->id,
-                    'srcset' => $media->getSrcset('media'),
-                    'url' => $media->getFullUrl('media'),
-                    'name' => $media->name,
-                ];
+                return $media->toMediaResponse();
             });
 
         return compact('paginated_media');
@@ -43,6 +41,8 @@ class MediaController extends Controller {
             ->addMediaFromBase64($image)
             ->usingName($name)
             ->toMediaCollection();
+        $media = \App\Core\Media\Media::find($media->id)
+            ->toMediaResponse();
 
         return compact('media');
     }

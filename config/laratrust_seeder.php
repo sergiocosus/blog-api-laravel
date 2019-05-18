@@ -8,6 +8,7 @@ return [
             'media' => 'c,r,u,d',
             'setting' => 'u',
             'link' => 'c,r,u,d',
+            'event' => 'c,r,u,d',
         ],
         'administrator' => [
             'post' => 'c,r,u,d',
@@ -15,6 +16,7 @@ return [
             'media' => 'c,r,u,d',
             'setting' => 'u',
             'link' => 'c,r,u,d',
+            'event' => 'c,r,u,d',
         ],
         'user' => [
             'post' => '',

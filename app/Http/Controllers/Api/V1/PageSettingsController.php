@@ -4,9 +4,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 
+use App\Core\PageSetting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SetPageSettingRequest;
-use App\Models\PageSetting;
 
 class PageSettingsController extends Controller {
 

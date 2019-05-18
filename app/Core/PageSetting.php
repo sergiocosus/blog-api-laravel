@@ -5,7 +5,7 @@
  * Date: Tue, 14 May 2019 18:35:30 +0000.
  */
 
-namespace App\Models;
+namespace App\Core;
 
 use App\BaseModel as Eloquent;
 
@@ -34,6 +34,10 @@ class PageSetting extends Eloquent
         ],
 	    [
             'name' => 'showLinks',
+            'type' => 'boolean',
+        ],
+	    [
+            'name' => 'showEvents',
             'type' => 'boolean',
         ]
     ];

@@ -2,20 +2,18 @@
 
 namespace App\Http\Requests\Settings;
 
-use App\Models\PageSetting;
+use App\Core\PageSetting;
 use Arr;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class SetPageSettingRequest extends FormRequest
-{
+class SetPageSettingRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return $this->user()->can('update-setting');
     }
 
@@ -24,11 +22,10 @@ class SetPageSettingRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'settings.*.name' => Rule::in(Arr::pluck(PageSetting::$validConfigs, 'name')),
-            'settings.*.type' => Rule::in(Arr::pluck(PageSetting::$validConfigs, 'type')),
+            'settings.*.name'    => Rule::in(Arr::pluck(PageSetting::$validConfigs, 'name')),
+            'settings.*.type'    => Rule::in(Arr::pluck(PageSetting::$validConfigs, 'type')),
             'settings.*.content' => 'required',
         ];
     }

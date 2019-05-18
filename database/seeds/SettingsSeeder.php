@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\PageSetting;
 use Illuminate\Database\Seeder;
 
 class SettingsSeeder extends Seeder
@@ -11,11 +12,11 @@ class SettingsSeeder extends Seeder
      */
     public function run()
     {
-        foreach (\App\Models\PageSetting::$validConfigs as $config) {
-            $pageSetting = \App\Models\PageSetting::whereName($config['name'])
+        foreach (PageSetting::$validConfigs as $config) {
+            $pageSetting = PageSetting::whereName($config['name'])
                 ->first();
             if (!$pageSetting) {
-                $pageSetting = new \App\Models\PageSetting();
+                $pageSetting = new PageSetting();
             }
 
             $pageSetting->fill($config)->save();

@@ -63,7 +63,7 @@ class PostController extends Controller {
      */
     public function store(CreatePostRequest $request) {
         $post = $this->postService->createPost($request)
-            ->load('author');
+            ->load('author', 'categories');
 
         return compact('post');
     }
@@ -72,7 +72,8 @@ class PostController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(UpdatePostRequest $request, Post $post) {
-        $this->postService->updatePost($post, $request);
+        $this->postService->updatePost($post, $request)
+            ->load('author', 'categories');
 
         return compact('post');
     }

@@ -74,6 +74,16 @@ Route::middleware(['auth:api'])->group(function () {
         });
     });
 
+    Route::group(['prefix' => 'event'], function () {
+        Route::post('', 'EventController@store');
+
+        Route::group(['prefix' => '{event}'], function () {
+            Route::put('', 'EventController@update');
+            Route::delete('', 'EventController@delete');
+            Route::patch('', 'EventController@restore');
+        });
+    });
+
     Route::put('setting', 'PageSettingsController@update');
 });
 
@@ -104,6 +114,11 @@ Route::group(['prefix' => 'users'], function () {
     Route::apiResource('comments', 'UserCommentController')->only('index');
     Route::apiResource('posts', 'UserPostController')->only('index');
     Route::apiResource('', 'UserController')->only(['index', 'show']);
+});
+
+Route::group(['prefix' => 'event'], function () {
+    Route::get('', 'EventController@get');
+    Route::get('{event}', 'EventController@getOne');
 });
 
 Route::get('link', 'LinkController@get');
