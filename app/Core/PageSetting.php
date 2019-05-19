@@ -32,6 +32,10 @@ class PageSetting extends Eloquent
             'name' => 'title',
             'type' => 'text',
         ],
+        [
+            'name' => 'contact',
+            'type' => 'longText',
+        ],
 	    [
             'name' => 'showLinks',
             'type' => 'boolean',
@@ -39,6 +43,10 @@ class PageSetting extends Eloquent
 	    [
             'name' => 'showEvents',
             'type' => 'boolean',
-        ]
+        ],
+	    [
+            'name' => 'showContact',
+            'type' => 'boolean',
+        ],
     ];
 }
