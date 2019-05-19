@@ -8,6 +8,9 @@
 namespace App\Core;
 
 use App\BaseModel as Eloquent;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 /**
  * Class PageSetting
@@ -20,12 +23,19 @@ use App\BaseModel as Eloquent;
  *
  * @package App\Models
  */
-class PageSetting extends Eloquent
+class PageSetting extends Eloquent implements HasMedia
 {
-	protected $fillable = [
+    use HasMediaTrait;
+
+    protected $fillable = [
 		'name',
 		'content'
 	];
+
+    protected $appends = [
+        'image_srcset',
+        'image_url',
+    ];
 
 	public static $validConfigs = [
 	    [
@@ -48,5 +58,28 @@ class PageSetting extends Eloquent
             'name' => 'showContact',
             'type' => 'boolean',
         ],
+	    [
+            'name' => 'mainPagePicture',
+            'type' => 'picture',
+        ],
     ];
+
+
+    public function registerMediaConversions(Media $media = null) {
+        $this->addMediaConversion('main')
+            ->withResponsiveImages();
+    }
+
+    public function getImageSrcsetAttribute() {
+        return optional($this->getMedia('main')
+            ->last())->getSrcset('main');
+
+    }
+
+    public function getImageUrlAttribute() {
+        return optional($this->getMedia('main')
+            ->last())->getFullUrl('main');
+
+    }
+
 }

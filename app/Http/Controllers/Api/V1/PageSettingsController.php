@@ -7,11 +7,13 @@ namespace App\Http\Controllers\Api\V1;
 use App\Core\PageSetting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SetPageSettingRequest;
+use Arr;
 
 class PageSettingsController extends Controller {
 
     public function get() {
-        $page_settings = PageSetting::get();
+        $page_settings = PageSetting::with('media')
+            ->get();
 
         return compact('page_settings');
     }
@@ -24,7 +26,16 @@ class PageSettingsController extends Controller {
             }
 
             $pageSetting->fill($setting)->save();
+
+            if ($picture = Arr::get($setting, 'picture')) {
+                $pageSetting->addMediaFromBase64($picture['base64'])
+                    ->preservingOriginal()
+                    ->setName($picture['name'])
+                    ->toMediaCollection('main');;
+            }
         }
+
+
 
         return $this->get();
     }

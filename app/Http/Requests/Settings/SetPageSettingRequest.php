@@ -26,7 +26,7 @@ class SetPageSettingRequest extends FormRequest {
         return [
             'settings.*.name'    => Rule::in(Arr::pluck(PageSetting::$validConfigs, 'name')),
             'settings.*.type'    => Rule::in(Arr::pluck(PageSetting::$validConfigs, 'type')),
-            'settings.*.content' => 'required',
+            'settings.*.content' => '',
         ];
     }
 }
