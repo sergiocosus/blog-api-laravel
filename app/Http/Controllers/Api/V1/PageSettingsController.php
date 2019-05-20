@@ -29,9 +29,9 @@ class PageSettingsController extends Controller {
 
             if ($picture = Arr::get($setting, 'picture')) {
                 $pageSetting->addMediaFromBase64($picture['base64'])
+                    ->setFileName($picture['name'])
                     ->preservingOriginal()
-                    ->setName($picture['name'])
-                    ->toMediaCollection('main');;
+                    ->toMediaCollection('main');
             }
         }
 

@@ -64,7 +64,7 @@ class UserController extends Controller {
         if ($request->profile) {
             $user->addMediaFromBase64($request->profile['base64'])
                 ->preservingOriginal()
-                ->setName($request->profile['name'])
+                ->setFileName($request->profile['name'])
                 ->toMediaCollection('profile');;
         }
 

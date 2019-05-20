@@ -14,20 +14,19 @@ use Spatie\MediaLibrary\Models\Media;
 
 /**
  * Class MediaLibrary
- * 
+ *
  * @property int $id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
  * @package App\Models
  */
-class MediaLibrary extends Eloquent implements HasMedia
-{
+class MediaLibrary extends Eloquent implements HasMedia {
     use HasMediaTrait;
 
-    public function registerMediaConversions(Media $media = null): void
-    {
+    public function registerMediaConversions(Media $media = null): void {
         $this->addMediaConversion('media')
+            ->keepOriginalImageFormat()
             ->withResponsiveImages();
     }
 }

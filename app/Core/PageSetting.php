@@ -62,12 +62,17 @@ class PageSetting extends Eloquent implements HasMedia
             'name' => 'mainPagePicture',
             'type' => 'picture',
         ],
+	    [
+            'name' => 'pageIcon',
+            'type' => 'picture',
+        ],
     ];
 
 
     public function registerMediaConversions(Media $media = null) {
         $this->addMediaConversion('main')
-            ->withResponsiveImages();
+            ->withResponsiveImages()
+            ->keepOriginalImageFormat();
     }
 
     public function getImageSrcsetAttribute() {

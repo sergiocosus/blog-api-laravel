@@ -38,7 +38,8 @@ class MediaController extends Controller {
 
         $media = MediaLibrary::first()
             ->addMediaFromBase64($picture['base64'])
-            ->usingName($picture['name'])
+            ->setFileName($picture['name'])
+            ->preservingOriginal()
             ->toMediaCollection();
         $media = \App\Core\Media\Media::find($media->id)
             ->toMediaResponse();

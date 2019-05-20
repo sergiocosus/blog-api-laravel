@@ -40,7 +40,7 @@ class EventService {
             if ($request->picture) {
                 $event->addMediaFromBase64($request->picture['base64'])
                     ->preservingOriginal()
-                    ->setName($request->picture['name'])
+                    ->setFileName($request->picture['name'])
                     ->toMediaCollection('main');;
             }
         });

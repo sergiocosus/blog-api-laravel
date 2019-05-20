@@ -135,6 +135,7 @@ class Post extends Eloquent implements HasMedia {
 
     public function registerMediaConversions(Media $media = null) {
         $this->addMediaConversion('main')
+            ->keepOriginalImageFormat()
             ->withResponsiveImages();
     }
 
