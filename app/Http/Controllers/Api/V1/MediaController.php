@@ -34,12 +34,11 @@ class MediaController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(CreateMediaRequest $request) {
-        $image = $request->get('base64');
-        $name  = $request->get('name');
+        $picture = $request->picture;
 
         $media = MediaLibrary::first()
-            ->addMediaFromBase64($image)
-            ->usingName($name)
+            ->addMediaFromBase64($picture['base64'])
+            ->usingName($picture['name'])
             ->toMediaCollection();
         $media = \App\Core\Media\Media::find($media->id)
             ->toMediaResponse();

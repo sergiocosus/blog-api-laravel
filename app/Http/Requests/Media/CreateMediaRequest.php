@@ -19,8 +19,8 @@ class CreateMediaRequest extends FormRequest {
      */
     public function rules(): array {
         return [
-            'base64' => 'required',
-            'name'  => 'nullable|string|max:255',
+            'picture.base64' => 'required',
+            'picture.name'  => 'nullable|string|max:255',
         ];
     }
 }
