@@ -91,6 +91,7 @@ return [
         Spatie\ImageOptimizer\Optimizers\Jpegoptim::class => [
             '--strip-all', // this strips out all text information such as comments and EXIF data
             '--all-progressive', // this will make sure the resulting image is a progressive one
+            '--max=85', // this will make sure the resulting image is a progressive one
         ],
         Spatie\ImageOptimizer\Optimizers\Pngquant::class => [
             '--force', // required parameter for this package
