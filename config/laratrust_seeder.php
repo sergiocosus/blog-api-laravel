@@ -9,6 +9,7 @@ return [
             'setting' => 'u',
             'link' => 'c,r,u,d',
             'event' => 'c,r,u,d',
+            'gallery' => 'c,r,u,d',
         ],
         'administrator' => [
             'post' => 'c,r,u,d',
@@ -17,6 +18,7 @@ return [
             'setting' => 'u',
             'link' => 'c,r,u,d',
             'event' => 'c,r,u,d',
+            'gallery' => 'c,r,u,d',
         ],
         'user' => [
             'post' => '',

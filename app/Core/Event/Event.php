@@ -8,6 +8,7 @@
 namespace App\Core\Event;
 
 use App\BaseModel as Eloquent;
+use App\Core\Media\CommonMediaAdderTrait;
 use App\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -38,6 +39,7 @@ class Event extends Eloquent implements HasMedia
 	use \Illuminate\Database\Eloquent\SoftDeletes;
     use Sluggable;
     use HasMediaTrait;
+    use CommonMediaAdderTrait;
 
 	protected $casts = [
 		'latitude' => 'float',

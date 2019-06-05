@@ -9,6 +9,7 @@ namespace App\Core\Post;
 
 use App\BaseModel as Eloquent;
 use App\Core\Like\Likeable;
+use App\Core\Media\CommonMediaAdderTrait;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -40,6 +41,7 @@ class Post extends Eloquent implements HasMedia {
     use Likeable;
     use Sluggable;
     use HasMediaTrait;
+    use CommonMediaAdderTrait;
 
     const PUBLISHED = 'published';
     const DRAFT = 'draft';

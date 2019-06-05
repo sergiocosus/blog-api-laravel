@@ -38,10 +38,10 @@ class EventService {
             ]))->save();
 
             if ($request->picture) {
-                $event->addMediaFromBase64($request->picture['base64'])
-                    ->preservingOriginal()
-                    ->setFileName($request->picture['name'])
-                    ->toMediaCollection('main');;
+                $event->customMediaAdd(
+                    $request->picture['base64'],
+                    $request->picture['name']
+                );
             }
         });
 

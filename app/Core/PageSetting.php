@@ -66,6 +66,10 @@ class PageSetting extends Eloquent implements HasMedia
             'name' => 'pageIcon',
             'type' => 'picture',
         ],
+	    [
+            'name' => 'showGalleries',
+            'type' => 'boolean',
+        ],
     ];
 
 

@@ -23,10 +23,10 @@ class PostService {
         ]));
 
         if ($request->thumbnail) {
-            $post->addMediaFromBase64($request->thumbnail['base64'])
-                ->preservingOriginal()
-                ->setFileName($request->thumbnail['name'])
-                ->toMediaCollection('main');;
+            $post->customMediaAdd(
+                $request->thumbnail['base64'],
+                $request->thumbnail['name']
+            );
         }
         $post->save();
 

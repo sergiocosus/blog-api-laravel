@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user/me', function (Request $request) {
 
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::group(['prefix' => 'auth'] , function() {
+    Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', 'Auth\LogoutController@logout');
         Route::put('password', 'Auth\PasswordController@update');
     });
@@ -79,8 +79,28 @@ Route::middleware(['auth:api'])->group(function () {
 
         Route::group(['prefix' => '{event}'], function () {
             Route::put('', 'EventController@update');
-            Route::delete('', 'EventController@delete');
+            Route::delete('', 'EventController@destroy');
             Route::patch('', 'EventController@restore');
+        });
+    });
+
+    Route::group(['prefix' => 'gallery'], function () {
+        Route::post('', 'Gallery\GalleryController@store');
+
+        Route::group(['prefix' => '{gallery}'], function () {
+            Route::put('', 'Gallery\GalleryController@update');
+            Route::delete('', 'Gallery\GalleryController@destroy');
+            Route::patch('', 'Gallery\GalleryController@restore');
+
+            Route::post('picture', 'Gallery\GalleryPictureController@store');
+        });
+
+        Route::group(['prefix' => 'picture'], function () {
+            Route::group(['prefix' => '{gallery_picture}'], function () {
+                Route::put('', 'Gallery\GalleryPictureController@update');
+                Route::delete('', 'Gallery\GalleryPictureController@destroy');
+                Route::patch('', 'Gallery\GalleryPictureController@restore');
+            });
         });
     });
 
@@ -89,7 +109,7 @@ Route::middleware(['auth:api'])->group(function () {
 
 Route::get('setting', 'PageSettingsController@get');
 
-Route::group(['prefix' => 'auth'] , function() {
+Route::group(['prefix' => 'auth'], function () {
     Route::get('social', 'Auth\SocialAuthController@getSocial');
     Route::post('register', 'Auth\RegisterController@register');
 });
@@ -125,3 +145,8 @@ Route::get('link', 'LinkController@get');
 
 // Media
 Route::get('media', 'MediaController@index');
+
+Route::group(['prefix' => 'gallery'], function () {
+    Route::get('', 'Gallery\GalleryController@index');
+    Route::get('{gallery}', 'Gallery\GalleryController@getOne');
+});
