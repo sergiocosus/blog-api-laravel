@@ -54,6 +54,8 @@ class Gallery extends Eloquent implements HasMedia {
         'image_url',
     ];
 
+    protected $hidden = ['media'];
+
     /**
      * Return the sluggable configuration array for this model.
      *

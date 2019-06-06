@@ -37,7 +37,6 @@ class GalleryPictureController {
             ->when($request->with_trashed, function ($query, $with_trashed) {
                 $query->withTrashed();
             })
-            ->with('gallery_pictures')
             ->latest()
             ->paginate($request->get('per_page', 20));
 
