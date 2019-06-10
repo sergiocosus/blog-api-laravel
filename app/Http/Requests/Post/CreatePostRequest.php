@@ -39,7 +39,7 @@ class CreatePostRequest extends FormRequest
             'title' => 'required',
             'content' => 'required',
             //'posted_at' => 'required|date',
-            'thumbnail' => 'required',
+            //'thumbnail' => 'required',
             'category_ids' => 'required',
         ];
     }
