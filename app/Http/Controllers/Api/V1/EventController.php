@@ -56,7 +56,7 @@ class EventController extends Controller {
         return compact('event');
     }
 
-    public function delete(DeleteEventRequest $request, Event $event) {
+    public function destroy(DeleteEventRequest $request, Event $event) {
         $event->delete();
 
         return response()->noContent();
