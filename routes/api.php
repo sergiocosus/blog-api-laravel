@@ -26,6 +26,12 @@ Route::middleware(['auth:api'])->group(function () {
         Route::put('password', 'Auth\PasswordController@update');
     });
 
+    Route::group(['prefix' => 'security'], function () {
+        Route::group(['prefix' => 'role'], function () {
+            Route::get('', 'Security\RoleController@get');
+        });
+    });
+
     Route::group(['prefix' => 'post'], function () {
         Route::get('', 'PostController@index');
         Route::post('', 'PostController@store');
@@ -56,7 +62,16 @@ Route::middleware(['auth:api'])->group(function () {
         });
     });
 
-    Route::put('user/me', 'UserController@update');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('', 'UserController@index');
+        Route::put('me', 'UserController@update');
+        Route::get('{user}', 'UserController@show');
+        Route::put('{user}/roles', 'UserController@setRoles');
+
+        Route::apiResource('comments', '`UserCommentController')->only('index');
+        Route::apiResource('posts', 'UserPostController')->only('index');
+    });
 
     Route::group(['prefix' => 'media'], function () {
         Route::post('', 'MediaController@store');
@@ -130,11 +145,7 @@ Route::group(['prefix' => 'category'], function () {
         Route::get('', 'Post\CategoryController@getOne');
     });
 });
-Route::group(['prefix' => 'users'], function () {
-    Route::apiResource('comments', 'UserCommentController')->only('index');
-    Route::apiResource('posts', 'UserPostController')->only('index');
-    Route::apiResource('', 'UserController')->only(['index', 'show']);
-});
+
 
 Route::group(['prefix' => 'event'], function () {
     Route::get('', 'EventController@get');

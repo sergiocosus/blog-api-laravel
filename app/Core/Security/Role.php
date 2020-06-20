@@ -8,9 +8,11 @@
 
 namespace App\Core\Security;
 
-
 use Laratrust\Models\LaratrustRole;
 
-class Role extends LaratrustRole {
-
+class Role extends LaratrustRole
+{
+    const SUPER_ADMINISTRATOR = 'super-administrator';
+    const ADMINISTRATOR = 'administrator';
+    const USER = 'user';
 }

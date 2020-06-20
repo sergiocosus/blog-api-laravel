@@ -3,15 +3,7 @@
 return [
     'role_structure' => [
         'superadministrator' => [
-            'post' => 'c,r,u,d,',
-            'category' => 'c,r,u,d',
-            'media' => 'c,r,u,d',
-            'setting' => 'u',
-            'link' => 'c,r,u,d',
-            'event' => 'c,r,u,d',
-            'gallery' => 'c,r,u,d',
-        ],
-        'administrator' => [
+            'user-role' => 'set-super-administrator,set-administrator,set-editor',
             'post' => 'c,r,u,d',
             'category' => 'c,r,u,d',
             'media' => 'c,r,u,d',
@@ -20,10 +12,22 @@ return [
             'event' => 'c,r,u,d',
             'gallery' => 'c,r,u,d',
         ],
-        'user' => [
-            'post' => '',
-            'category' => '',
-            'media' => '',
+        'administrator' => [
+            'user-role' => 'set-super-administrator,set-administrator,set-editor',
+            'post' => 'c,r,u,d',
+            'category' => 'c,r,u,d',
+            'media' => 'c,r,u,d',
+            'setting' => 'u',
+            'link' => 'c,r,u,d',
+            'event' => 'c,r,u,d',
+            'gallery' => 'c,r,u,d',
+            'role' => 'set',
+        ],
+        'editor' => [
+            'user-role' => 'set-super-administrator,set-administrator,set-editor',
+            'post' => 'c',
+            'category' => 'c',
+            'media' => 'c',
         ],
     ],
     'permission_structure' => [

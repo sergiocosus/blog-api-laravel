@@ -150,7 +150,6 @@ class Post extends Eloquent implements HasMedia {
     public function getImageUrlAttribute() {
         return optional($this->getMedia('main')
             ->last())->getFullUrl('main');
-
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Core\UserService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Http\Requests\User\SetRolesRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -25,7 +26,7 @@ class UserController extends Controller {
     /**
      * Return the users.
      */
-    public function index(Request $request): ResourceCollection {
+    public function index(Request $request) {
         $paginated_users = User::withCount([
             'comments',
             'posts',
@@ -56,9 +57,7 @@ class UserController extends Controller {
 
         $user->update($request->only([
             'name',
-            'last_name',
             'email',
-            'password',
         ]));
 
         if ($request->profile) {
@@ -69,5 +68,13 @@ class UserController extends Controller {
         }
 
         return compact('user');
+    }
+
+    public function setRoles(User $user, SetRolesRequest $request)
+    {
+        $user->syncRoles($request->role_names);
+        $roles = $user->roles()->get();
+
+        return compact('roles');
     }
 }
