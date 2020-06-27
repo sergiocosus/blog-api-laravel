@@ -14,7 +14,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 /**
  * Class PageSetting
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $content
@@ -68,6 +68,10 @@ class PageSetting extends Eloquent implements HasMedia
         ],
 	    [
             'name' => 'showGalleries',
+            'type' => 'boolean',
+        ],
+	    [
+            'name' => 'showMembers',
             'type' => 'boolean',
         ],
     ];

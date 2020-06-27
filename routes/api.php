@@ -119,6 +119,14 @@ Route::middleware(['auth:api'])->group(function () {
         });
     });
 
+    Route::group(['prefix' => 'member'], function () {
+        Route::post('', 'Misc\MemberController@store');
+        Route::put('{member}', 'Misc\MemberController@update');
+        Route::delete('{member}', 'Misc\MemberController@delete');
+        Route::patch('{member}', 'Misc\MemberController@restore');
+    });
+
+
     Route::put('setting', 'PageSettingsController@update');
 });
 
@@ -140,7 +148,6 @@ Route::group(['prefix' => 'post'], function () {
 Route::group(['prefix' => 'category'], function () {
     Route::get('', 'Post\CategoryController@index');
 
-
     Route::group(['prefix' => '{category}'], function () {
         Route::get('', 'Post\CategoryController@getOne');
     });
@@ -160,4 +167,9 @@ Route::get('media', 'MediaController@index');
 Route::group(['prefix' => 'gallery'], function () {
     Route::get('', 'Gallery\GalleryController@index');
     Route::get('{gallery}', 'Gallery\GalleryController@getOne');
+});
+
+
+Route::group(['prefix' => 'member'], function () {
+    Route::get('', 'Misc\MemberController@index');
 });

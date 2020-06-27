@@ -11,6 +11,7 @@ return [
             'link' => 'c,r,u,d',
             'event' => 'c,r,u,d',
             'gallery' => 'c,r,u,d',
+            'member' => 'c,r,u,d',
         ],
         'administrator' => [
             'user-role' => 'set-super-administrator,set-administrator,set-editor',
@@ -21,7 +22,7 @@ return [
             'link' => 'c,r,u,d',
             'event' => 'c,r,u,d',
             'gallery' => 'c,r,u,d',
-            'role' => 'set',
+            'member' => 'c,r,u,d',
         ],
         'editor' => [
             'user-role' => 'set-super-administrator,set-administrator,set-editor',
