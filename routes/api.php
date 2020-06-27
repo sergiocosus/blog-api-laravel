@@ -126,6 +126,13 @@ Route::middleware(['auth:api'])->group(function () {
         Route::patch('{member}', 'Misc\MemberController@restore');
     });
 
+    Route::group(['prefix' => 'argument'], function () {
+        Route::post('', 'Misc\ArgumentController@store');
+        Route::put('{argument}', 'Misc\ArgumentController@update');
+        Route::delete('{argument}', 'Misc\ArgumentController@delete');
+        Route::patch('{argument}', 'Misc\ArgumentController@restore');
+    });
+
 
     Route::put('setting', 'PageSettingsController@update');
 });
@@ -172,4 +179,9 @@ Route::group(['prefix' => 'gallery'], function () {
 
 Route::group(['prefix' => 'member'], function () {
     Route::get('', 'Misc\MemberController@index');
+});
+
+
+Route::group(['prefix' => 'argument'], function () {
+    Route::get('', 'Misc\ArgumentController@index');
 });

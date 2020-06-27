@@ -2,6 +2,7 @@
 namespace App\Core\Security; 
 
 class PermissionsConst {
+    const createArgument = 'create-argument';
     const createCategory = 'create-category';
     const createEvent = 'create-event';
     const createGallery = 'create-gallery';
@@ -9,6 +10,7 @@ class PermissionsConst {
     const createMedia = 'create-media';
     const createMember = 'create-member';
     const createPost = 'create-post';
+    const deleteArgument = 'delete-argument';
     const deleteCategory = 'delete-category';
     const deleteEvent = 'delete-event';
     const deleteGallery = 'delete-gallery';
@@ -16,6 +18,7 @@ class PermissionsConst {
     const deleteMedia = 'delete-media';
     const deleteMember = 'delete-member';
     const deletePost = 'delete-post';
+    const readArgument = 'read-argument';
     const readCategory = 'read-category';
     const readEvent = 'read-event';
     const readGallery = 'read-gallery';
@@ -26,6 +29,7 @@ class PermissionsConst {
     const setAdministratorUserRole = 'set-administrator-user-role';
     const setEditorUserRole = 'set-editor-user-role';
     const setSuperAdministratorUserRole = 'set-super-administrator-user-role';
+    const updateArgument = 'update-argument';
     const updateCategory = 'update-category';
     const updateEvent = 'update-event';
     const updateGallery = 'update-gallery';

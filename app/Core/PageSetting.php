@@ -74,6 +74,10 @@ class PageSetting extends Eloquent implements HasMedia
             'name' => 'showMembers',
             'type' => 'boolean',
         ],
+	    [
+            'name' => 'showArguments',
+            'type' => 'boolean',
+        ],
     ];
 
 
