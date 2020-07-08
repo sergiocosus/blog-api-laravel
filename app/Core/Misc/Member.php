@@ -18,6 +18,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *
  * @property int $id
  * @property string $name
+ * @property int $order
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
@@ -32,7 +33,8 @@ class Member extends Eloquent implements HasMedia
     }
 
 	protected $fillable = [
-		'name'
+		'name',
+		'order'
 	];
 
     protected $hidden = ['media'];

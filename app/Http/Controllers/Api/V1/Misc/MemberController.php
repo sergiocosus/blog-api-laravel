@@ -35,7 +35,7 @@ class MemberController extends Controller
             ->when($request->with_trashed, function ($query, $with_trashed) {
                 $query->withTrashed();
             })
-            ->latest()
+            ->orderBy('order', 'asc')
             ->paginate($request->get('per_page', 20));
 
         return compact('paginated_members');

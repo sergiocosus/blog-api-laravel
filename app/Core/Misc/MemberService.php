@@ -8,15 +8,18 @@ class MemberService
 {
     public function createMember(Request $request)
     {
-        $post = new Member();
+        $member = new Member();
+        $maxMemberOrder = Member::max('order');
+        $member->order = $maxMemberOrder + 1;
 
-        return $this->updateMember($post, $request);
+        return $this->updateMember($member, $request);
     }
 
     public function updateMember(Member $member, Request $request)
     {
         $member->fill($request->only([
             'name',
+            'order',
         ]));
 
         if ($request->picture) {
