@@ -27,13 +27,19 @@ class EventController extends Controller {
     }
 
     public function get(Request $request) {
-        $events = Event::orderBy('begin_at', 'asc')
+        $events = Event::query()
             ->when($request->not_expired, function ($query, $notExpired) {
-                $query->where('end_at', '>', now());
+                $query->where('end_at', '>', now())
+                    ->orderBy('begin_at', 'asc');
+            })
+            ->when($request->expired, function ($query, $notExpired) {
+                $query->where('end_at', '<', now())
+                    ->orderBy('begin_at', 'desc');
             })
             ->when($request->with_trashed === 'true', function ($query) {
                 $query->withTrashed();
             })
+            ->orderBy('begin_at', 'asc')
             ->get();
 
         return compact('events');
