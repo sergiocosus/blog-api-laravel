@@ -14,6 +14,7 @@ return [
             'member' => 'c,r,u,d',
             'argument' => 'c,r,u,d',
             'organization' => 'c,r,u,d',
+            'contact-response' => 'r,d',
         ],
         'administrator' => [
             'user-role' => 'set-super-administrator,set-administrator,set-editor',
@@ -27,6 +28,7 @@ return [
             'member' => 'c,r,u,d',
             'argument' => 'c,r,u,d',
             'organization' => 'c,r,u,d',
+            'contact-response' => 'r,d',
         ],
         'editor' => [
             'user-role' => 'set-super-administrator,set-administrator,set-editor',

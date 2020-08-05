@@ -136,6 +136,8 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::put('setting', 'PageSettingsController@update');
     Route::apiResource('organization', 'Misc\OrganizationController');
+    Route::apiResource('contact-response', 'Misc\ContactResponseController');
+    Route::patch('contact-response/{contact_response}', 'Misc\ContactResponseController@restore');
 });
 
 Route::get('setting', 'PageSettingsController@get');
@@ -188,3 +190,4 @@ Route::group(['prefix' => 'argument'], function () {
 });
 
 Route::get('organization', 'Misc\OrganizationController@index');
+Route::post('contact-response', 'Misc\ContactResponseController@store');

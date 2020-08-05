@@ -13,6 +13,7 @@ class PermissionsConst {
     const createPost = 'create-post';
     const deleteArgument = 'delete-argument';
     const deleteCategory = 'delete-category';
+    const deleteContactResponse = 'delete-contact-response';
     const deleteEvent = 'delete-event';
     const deleteGallery = 'delete-gallery';
     const deleteLink = 'delete-link';
@@ -22,6 +23,7 @@ class PermissionsConst {
     const deletePost = 'delete-post';
     const readArgument = 'read-argument';
     const readCategory = 'read-category';
+    const readContactResponse = 'read-contact-response';
     const readEvent = 'read-event';
     const readGallery = 'read-gallery';
     const readLink = 'read-link';
