@@ -135,6 +135,7 @@ Route::middleware(['auth:api'])->group(function () {
 
 
     Route::put('setting', 'PageSettingsController@update');
+    Route::apiResource('organization', 'Misc\OrganizationController');
 });
 
 Route::get('setting', 'PageSettingsController@get');
@@ -185,3 +186,5 @@ Route::group(['prefix' => 'member'], function () {
 Route::group(['prefix' => 'argument'], function () {
     Route::get('', 'Misc\ArgumentController@index');
 });
+
+Route::get('organization', 'Misc\OrganizationController@index');

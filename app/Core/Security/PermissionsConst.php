@@ -9,6 +9,7 @@ class PermissionsConst {
     const createLink = 'create-link';
     const createMedia = 'create-media';
     const createMember = 'create-member';
+    const createOrganization = 'create-organization';
     const createPost = 'create-post';
     const deleteArgument = 'delete-argument';
     const deleteCategory = 'delete-category';
@@ -17,6 +18,7 @@ class PermissionsConst {
     const deleteLink = 'delete-link';
     const deleteMedia = 'delete-media';
     const deleteMember = 'delete-member';
+    const deleteOrganization = 'delete-organization';
     const deletePost = 'delete-post';
     const readArgument = 'read-argument';
     const readCategory = 'read-category';
@@ -25,6 +27,7 @@ class PermissionsConst {
     const readLink = 'read-link';
     const readMedia = 'read-media';
     const readMember = 'read-member';
+    const readOrganization = 'read-organization';
     const readPost = 'read-post';
     const setAdministratorUserRole = 'set-administrator-user-role';
     const setEditorUserRole = 'set-editor-user-role';
@@ -36,6 +39,7 @@ class PermissionsConst {
     const updateLink = 'update-link';
     const updateMedia = 'update-media';
     const updateMember = 'update-member';
+    const updateOrganization = 'update-organization';
     const updatePost = 'update-post';
     const updateSetting = 'update-setting';
 
