@@ -35,6 +35,7 @@ class EventService {
                 'notify_at',
                 'latitude',
                 'longitude',
+                'gallery_id',
             ]))->save();
 
             if ($request->picture) {

@@ -176,6 +176,7 @@ Route::get('media', 'MediaController@index');
 
 Route::group(['prefix' => 'gallery'], function () {
     Route::get('', 'Gallery\GalleryController@index');
+    Route::get('paginated', 'Gallery\GalleryController@paginated');
     Route::get('{gallery}', 'Gallery\GalleryController@getOne');
 });
 

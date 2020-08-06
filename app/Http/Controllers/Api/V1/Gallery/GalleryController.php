@@ -30,6 +30,23 @@ class GalleryController {
      * Return the posts.
      */
     public function index(Request $request) {
+        $galleries = Gallery::query()
+            ->when($request->search, function ($query, $search) {
+                $query->search($search);
+            })
+            ->when($request->with_trashed, function ($query, $with_trashed) {
+                $query->withTrashed();
+            })
+            ->latest()
+            ->get();
+
+        return compact('galleries');
+    }
+
+    /**
+     * Return the posts.
+     */
+    public function paginated(Request $request) {
         $paginated_galleries = Gallery::query()
             ->when($request->search, function ($query, $search) {
                 $query->search($search);

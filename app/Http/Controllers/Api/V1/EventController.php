@@ -46,6 +46,8 @@ class EventController extends Controller {
     }
 
     public function getOne(Event $event) {
+        $event->load('gallery.gallery_pictures');
+
         return compact('event');
     }
 

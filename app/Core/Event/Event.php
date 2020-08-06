@@ -8,6 +8,7 @@
 namespace App\Core\Event;
 
 use App\BaseModel as Eloquent;
+use App\Core\Gallery\Gallery;
 use App\Core\Media\CommonMediaAdderTrait;
 use App\User;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -17,7 +18,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 /**
  * Class Event
- * 
+ *
  * @property int $id
  * @property string $title
  * @property string $slug
@@ -61,7 +62,8 @@ class Event extends Eloquent implements HasMedia
 		'end_at',
 		'notify_at',
 		'latitude',
-		'longitude'
+		'longitude',
+		'gallery_id'
 	];
 
     protected $appends = [
@@ -93,6 +95,11 @@ class Event extends Eloquent implements HasMedia
     public function author()
     {
         return $this->belongsTo(User::class, 'author_user_id');
+    }
+
+    public function gallery()
+    {
+        return $this->belongsTo(Gallery::class);
     }
 
     public function registerMediaConversions(Media $media = null) {
