@@ -29,6 +29,7 @@ class LinkController extends Controller {
 
     public function get(Request $request) {
         $paginated_links = Link::query()
+            ->with('categories')
             ->when($request->search, function ($query, $search) {
                 $query->search($search, null, true, true);
             })
@@ -48,7 +49,10 @@ class LinkController extends Controller {
             'title',
             'url',
             'description',
+            'category_ids',
         ]));
+
+        $link->categories()->sync($request->category_ids);
 
         return compact('link');
     }
@@ -58,6 +62,7 @@ class LinkController extends Controller {
             'title',
             'url',
             'description',
+            'category_ids',
         ]));
 
         return compact('link');

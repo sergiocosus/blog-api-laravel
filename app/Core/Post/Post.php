@@ -42,6 +42,7 @@ class Post extends Eloquent implements HasMedia {
     use Sluggable;
     use HasMediaTrait;
     use CommonMediaAdderTrait;
+    use CategorizableTrait;
 
     const PUBLISHED = 'published';
     const DRAFT = 'draft';
@@ -77,11 +78,6 @@ class Post extends Eloquent implements HasMedia {
     public function comments() {
         return $this->hasMany(\App\Core\Post\Comment::class);
     }
-
-    public function categories() {
-        return $this->belongsToMany(Category::class);
-    }
-
 
     /**
      * Return the sluggable configuration array for this model.

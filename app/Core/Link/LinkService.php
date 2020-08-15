@@ -17,6 +17,7 @@ class LinkService {
 
     public function updatePost(Link $link, $data) {
         $link->fill($data)->save();
+        $link->categories()->sync($data['category_ids']);
 
         return $link;
     }

@@ -8,19 +8,20 @@
 namespace App\Core\Post;
 
 use App\BaseModel as Eloquent;
+use App\Core\Link\Link;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 /**
  * Class Category
- * 
+ *
  * @property int $id
  * @property string $title
  * @property string $slug
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * 
+ *
  * @property \Illuminate\Database\Eloquent\Collection $posts
  *
  * @package App\Models
@@ -62,7 +63,12 @@ class Category extends Eloquent
 
 	public function posts()
 	{
-		return $this->belongsToMany(Post::class);
+		return $this->morphedByMany(Post::class, 'categorizable');
+	}
+
+	public function links()
+	{
+		return $this->morphedByMany(Link::class, 'categorizable');
 	}
 
     /**
@@ -71,7 +77,5 @@ class Category extends Eloquent
     public function getRouteKeyName(): string {
         return 'slug';
     }
-
-
 
 }

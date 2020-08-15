@@ -8,11 +8,12 @@
 namespace App\Core\Link;
 
 use App\BaseModel as Eloquent;
+use App\Core\Post\CategorizableTrait;
 use App\User;
 
 /**
  * Class Link
- * 
+ *
  * @property int $id
  * @property string $title
  * @property string $url
@@ -25,6 +26,7 @@ use App\User;
 class Link extends Eloquent
 {
     use \Illuminate\Database\Eloquent\SoftDeletes;
+    use CategorizableTrait;
 
     protected $casts = [
         'creator_user_id' => 'int'
