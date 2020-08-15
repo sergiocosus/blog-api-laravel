@@ -190,5 +190,6 @@ Route::group(['prefix' => 'argument'], function () {
     Route::get('', 'Misc\ArgumentController@index');
 });
 
+Route::get('organization/{organization}', 'Misc\OrganizationController@show');
 Route::get('organization', 'Misc\OrganizationController@index');
 Route::post('contact-response', 'Misc\ContactResponseController@store');
