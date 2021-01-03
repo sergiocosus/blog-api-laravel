@@ -25,6 +25,7 @@ use App\BaseModel as Eloquent;
 class Argument extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
+	use \App\Common\SearchableTrait;
 
 	protected $casts = [
 		'order' => 'int'
@@ -35,4 +36,11 @@ class Argument extends Eloquent
 		'answer',
 		'order'
 	];
+
+    protected $searchable = [
+        'columns' => [
+            'arguments.question' => 5,
+            'arguments.answer' => 5
+        ],
+    ];
 }
