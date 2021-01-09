@@ -34,7 +34,9 @@ class Member extends Eloquent implements HasMedia
 
 	protected $fillable = [
 		'name',
-		'order'
+		'order',
+		'description',
+		'organization_id'
 	];
 
     protected $hidden = ['media'];
@@ -43,4 +45,13 @@ class Member extends Eloquent implements HasMedia
         'image_srcset',
         'image_url',
     ];
+
+    public static function commonWith() {
+        return ['organization'];
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
 }

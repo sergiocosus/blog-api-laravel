@@ -20,6 +20,8 @@ class MemberService
         $member->fill($request->only([
             'name',
             'order',
+            'description',
+            'organization_id',
         ]));
 
         if ($request->picture) {

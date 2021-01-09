@@ -35,6 +35,7 @@ class MemberController extends Controller
             ->when($request->with_trashed, function ($query, $with_trashed) {
                 $query->withTrashed();
             })
+            ->with(Member::commonWith())
             ->orderBy('order', 'asc')
             ->paginate($request->get('per_page', 20));
 
@@ -43,7 +44,7 @@ class MemberController extends Controller
 
     public function getOne(GetMemberRequest $request, Member $member)
     {
-        $member->load();
+        $member->load(Member::commonWith());
 
         return compact('member');
     }
@@ -54,6 +55,7 @@ class MemberController extends Controller
     public function store(CreateMemberRequest $request)
     {
         $member = $this->memberService->createMember($request);
+        $member->load(Member::commonWith());
 
         return compact('member');
     }
@@ -64,6 +66,7 @@ class MemberController extends Controller
     public function update(UpdateMemberRequest $request, Member $member)
     {
         $this->memberService->updateMember($member, $request);
+        $member->load(Member::commonWith());
 
         return compact('member');
     }
